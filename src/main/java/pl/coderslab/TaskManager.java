@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Scanner;
 
 public class TaskManager {
 
@@ -23,6 +24,26 @@ public class TaskManager {
     public static void main(String[] args) {
         tasks = loadDataToTab(FILE_NAME);
         printOptions(OPTIONS);
+
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNextLine()) {
+            String input = scanner.nextLine();
+            switch (input) {
+                case "exit":
+                    break;
+                case "add":
+                    break;
+                case "remove":
+                    break;
+                case "list":
+                    printTab(tasks);
+                    break;
+                default:
+                    System.out.println("Please select a correct option.");
+            }
+            printOptions(OPTIONS);
+        }
+
     }
 
     public static String[][] loadDataToTab(String fileName) {
@@ -48,5 +69,15 @@ public class TaskManager {
 
         }
         return tab;
+    }
+
+    public static void printTab(String[][] tab) {
+        for (int i = 0; i < tab.length; i++) {
+            System.out.print(i + " : ");
+            for (int j = 0; j < tab[i].length; j++) {
+                System.out.print(tab[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
 }
